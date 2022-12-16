@@ -1,0 +1,61 @@
+---
+layout: default
+---
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <h1 id="ishell">iShell Extension</h1>
+
+    <p>
+        <img height="16px" width="16px" src="/images/firefox.png" alt="Firefox"/>
+        <a id="xpi-link" href="https://addons.mozilla.org/en-US/firefox/addon/lightning-tab-groups/" target="_blank">Firefox Add-On</a>
+    </p>
+
+    <script>
+        function watch(delay) {
+            delayedPlayProductVideo("product-poster", "product-video", 16000, delay);
+        }
+
+        watch(1000);
+    </script>
+
+    <div id="product-poster" class="video-placeholder">
+        <div class="poster-container" onclick="watch(0)">
+            <img class="poster" src="/lightning-tab-groups/media/screen.png" alt="screen"/>
+            <div class="play-button-container" onclick="watch(0)"><!--
+            --><img class="play-button" src="/images/play_video.png"></div>
+        </div>
+    </div>
+
+    <div id="product-video" class="product-video">
+        <video src="/lightning-tab-groups/media/demo.webm" type="video/webm" muted></video>
+    </div>
+
+    <p>SEE ALSO: <a href="https://gchristensen.github.io/enso-portable/">Enso Launcher</a>,
+        <a href="https://gchristensen.github.io/scrapyard/">Scrapyard</a></p>
+
+    <h4>Description</h4>
+
+    <p style="text-align: justify;">Lightning Tab Groups is a Firefox tab group manager based on tab hiding
+        designed to be operated primarily from the keyboard. Some use cases require you to memorize a few
+        simple keyboard shortcuts. In return, you get fast uncluttered user interface and the
+        ability to instantly operate tabs. See the
+        <a href="https://gchristensen.github.io/lightning-tab-groups/ui/help/manual.html" target="_blank">online help</a>
+        for a more detailed description of the add-on features.</p>
+
+    <h4>Key Features</h4>
+
+    <ul class="just">
+        <li>Switching between tab groups with keyboard shortcuts.</li>
+        <li>Use of color tab group mnemonics.</li>
+        <li>Use of emoji as a tab group mnemonic.</li>
+        <li>Ability to close or reload all tabs in the tab group.</li>
+        <li>Ability to copy and paste tab groups between browser instances.</li>
+        <li><a href="https://gchristensen.github.io/ishell">iShell</a> integration.</li>
+    </ul>
+
+</body>
+</html>

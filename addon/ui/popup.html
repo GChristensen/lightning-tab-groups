@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lightning Tab Groups</title>
+
+    <link href="popup.css" rel="stylesheet"/>
+
+    <script src="style_loader.js" type="text/javascript"></script>
+
+    <script src="../global.js" type="text/javascript"></script>
+    <script src="../lib/jquery.js" type="text/javascript"></script>
+    <script src="popup.js" type="module"></script>
+</head>
+<body>
+    <div id="tab-groups-view" class="view default-view">
+        <div id="tab-groups-title" class="view-title">
+            <div id="tab-groups-title-text">Tab groups&nbsp;&nbsp;</div>
+            <div id="tab-group-buttons">
+                <span id="add-tab-group-button" title="Create tab group">&#10010;</span>&nbsp;
+                <img id="tab-groups-title-help" class="invert-filter" src="/ui/icons/help.svg" title="• ↑/↓ - select a tab group.
+• Ctrl+↑/↓ - move the selected tab group up or down.
+• ←/→ - hide/show tab group tabs.
+• Enter - switch to the selected tab group.
+• 1-9, a-z - directly switch to the corresponding tab group.
+• Insert - create a tab group.
+• Ctrl+Insert - edit the selected tab group.
+• Delete - delete the selected tab group.
+• Ctrl+Delete - close all tabs in the selected tab group.
+• Home - move the currently active tab to the selected tab group.
+• End - move all or highlighted tabs to the selected tab group.
+• Shift+End - move all tabs of the selected tab group to a new window.
+• Ctrl+End/Ctrl+Home - move by switching to the selected tab group.
+• PageUp - copy the selected tab group to the clipboard.
+• Shift+PageUp - copy all tab groups to the clipboard.
+• PageDown - paste tab groups from the clipboard.
+• / - reload all tabs in the selected tab group.
+• = - search tabs.
+• F1 - display help.">
+            </div>
+        </div>
+        <table id="tab-groups"></table>
+        <div id="confirm-delete" class="confirm-prompt">
+            Delete: y/n
+        </div>
+    </div>
+
+    <div id="create-tab-group-view" class="view">
+        <div id="edit-tab-group-title" class="view-title">
+            <span id="edit-tab-group-title-text">Edit tab group</span>
+        </div>
+        <div class="edit-field-title">Name</div>
+        <input id="tab-group-name" type="text"/>
+        <div class="edit-field-title">Container</div>
+        <input id="tab-group-container" type="text"/>
+        <div class="edit-field-title">Color mnemonic</div>
+        <div id="tab-group-colors">
+            <div>Ctrl+</div>
+            <table id="tab-group-color-table">
+                <tr>
+                    <td id="tab-group-color-0" class="color-selector" title="Default">0</td>
+                    <td id="tab-group-color-1" class="color-selector">1</td>
+                    <td id="tab-group-color-2" class="color-selector">2</td>
+                    <td id="tab-group-color-3" class="color-selector">3</td>
+                    <td id="tab-group-color-4" class="color-selector">4</td>
+                    <td id="tab-group-color-5" class="color-selector">5</td>
+                    <td id="tab-group-color-6" class="color-selector">6</td>
+                    <td id="tab-group-color-7" class="color-selector">7</td>
+                    <td id="tab-group-color-8" class="color-selector">8</td>
+                    <td id="tab-group-color-9" class="color-selector" title="Transparent">9</td>
+                </tr>
+            </table>
+            <input id="tab-group-color-value" type="hidden">
+            <input id="tab-group-color-key" type="hidden" value="0">
+        </div>
+
+        <div id="confirm-create" class="confirm-prompt">
+            Save: Enter
+        </div>
+    </div>
+
+    <div id="tabs-view" class="view">
+        <div id="tabs-title" class="view-title">
+            <span id="tabs-title-text"></span>
+            <div id="tabs-buttons">
+                <img id="tabs-title-help" class="invert-filter" src="/ui/icons/help.svg" title="• ↑/↓ - select a tab.
+• Enter - switch to the selected tab.
+• 1-9, a-z - directly switch to the corresponding tab.">
+            </div>
+        </div>
+        <table id="group-tabs"></table>
+    </div>
+
+    <div id="search-tabs-view" class="view">
+        <div id="search-title" class="view-title">
+            <span id="search-title-text">Tab search</span>
+            <div id="search-buttons">
+                <img id="search-title-help" class="invert-filter" src="/ui/icons/help.svg" title="• ↑/↓ - select a tab.
+• Enter - switch to the selected tab.
+• Ctrl+1-9, Ctrl+a-z - directly switch to the corresponding tab.">
+            </div>
+        </div>
+        <div id="search-input-container">
+            <input id="search-input" type="text">
+        </div>
+        <table id="search-results"></table>
+    </div>
+</body>
+</html>

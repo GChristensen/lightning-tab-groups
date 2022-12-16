@@ -1,0 +1,317 @@
+:root {
+    --confirm-font-size: 90%;
+    --edit-label-font-size: 95%;
+    --default-color: black;
+    --empty-border-color: white;
+    --selection-border-color: black;
+}
+
+* {
+    font-family: "Segoe UI", "Tahoma", "Arial", sans-serif;
+}
+
+body {
+    /*max-width: 150px;*/
+    overflow-x: hidden;
+}
+
+input[type="text"] {
+    outline: none;
+}
+
+.view {
+    display: none;
+}
+
+.default-view {
+    display: block;
+}
+
+.view-title {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+#tab-groups-title, #tab-group-buttons, #search-title, #search-buttons, #tabs-title, #tabs-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tab-groups-title-text, #search-title-text, #tabs-title-text {
+    flex: 1 0 auto;
+}
+
+#add-tab-group-button {
+    cursor: pointer;
+}
+
+#tab-groups-title-help, #search-title-help, #tabs-title-help {
+    cursor: help;
+    width: 16px;
+    height: 16px;
+}
+
+#tab-groups, #search-results, #group-tabs {
+    /*min-width: 130px;*/
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#tab-groups {
+    width: 100%;
+}
+
+#search-results, #group-tabs {
+    table-layout: fixed;
+}
+
+#tab-groups td {
+    cursor: pointer;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    white-space: nowrap;
+}
+
+.tab-group-name {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.tab-group-tab-count {
+    /*border-left: 2px solid gray;*/
+}
+
+.tab-group-key, .small-tab-icon, .tab-group-tab-count {
+    width: max-content;
+}
+
+.tab-group-key {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.tab-group-tab-count {
+    text-align: right;
+    padding-left: 8px;
+    padding-right: 4px;
+}
+
+#tab-groups td, #search-results td, #group-tabs td {
+    border-top: solid 1px var(--empty-border-color);
+    border-bottom: solid 1px var(--empty-border-color);
+}
+
+#tab-groups tr td:first-child, #search-results tr td:first-child, #group-tabs tr td:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-left: 1px solid var(--empty-border-color);
+}
+
+#tab-groups tr td:last-child, #search-results tr td:last-child, #group-tabs tr td:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-right: 1px solid var(--empty-border-color);
+}
+
+#tab-groups tr.active td, #search-results tr.active td, #group-tabs tr.active td {
+    border-top: solid 1px var(--selection-border-color);
+    border-bottom: solid 1px var(--selection-border-color);
+}
+
+#tab-groups tr.active td:first-child, #search-results tr.active td:first-child, #group-tabs tr.active td:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-left: 1px solid var(--selection-border-color);
+}
+
+#tab-groups tr.active td:last-child, #search-results tr.active td:last-child, #group-tabs tr.active td:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-right: 1px solid var(--selection-border-color);
+}
+
+.small-tab-icon {
+    vertical-align: bottom;
+    margin-right: 2px;
+}
+
+#confirm-delete {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--confirm-font-size);
+    color: red;
+}
+
+#confirm-create {
+    font-size: var(--confirm-font-size);
+    font-weight: bold;
+}
+
+.confirm-prompt {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.edit-field-title {
+    font-size: var(--edit-label-font-size);
+}
+
+#tab-group-name, #tab-group-container {
+    border: none;
+    border-bottom: 1px solid black;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    width: 170px;
+}
+
+#tab-group-colors {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--edit-label-font-size);
+    margin-top: 3px;
+    margin-bottom: 5px;
+}
+
+#tab-group-color-table {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+#tab-group-color-table td {
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 0 2px;
+}
+
+#tab-group-color-0 {
+    background-color: transparent;
+    color: var(--default-color);
+}
+
+#tab-group-color-1 {
+    background-color: #37ADFF;
+    color: white;
+}
+
+#tab-group-color-2 {
+    background-color: #00C79A;
+    color: white;
+}
+
+#tab-group-color-3 {
+    background-color: #51CD00;
+    color: white;
+}
+
+#tab-group-color-4 {
+    background-color: #FFCB00;
+    color: black;
+}
+
+#tab-group-color-5 {
+    background-color: #FF9F00;
+    color: black;
+}
+
+#tab-group-color-6 {
+    background-color: #FF623D;
+    color: black;
+}
+
+#tab-group-color-7 {
+    background-color: #FF4BDA;
+    color: black;
+}
+
+#tab-group-color-8 {
+    background-color: #AF51F5;
+    color: white;
+}
+
+#tab-group-color-9 {
+    background-image: linear-gradient(-45deg, lightgray 25%, transparent 25%, transparent 50%, lightgray 50%, lightgray 75%, transparent 75%, transparent);
+    color: var(--default-color);
+}
+
+.tab-group-row-container-icon {
+    vertical-align: middle;
+}
+
+#search-input-container {
+    margin-right: 5px;
+}
+
+#search-input {
+    width: 100%;
+    min-width: 200px;
+    margin-right: 5px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+#search-results, #group-tabs {
+    margin-top: 10px;
+    /*width: 100%;*/
+   width: 500px;
+}
+
+.divider-tab-group div {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    font-size: 75%;
+}
+
+.tab-group-divider {
+    border: none;
+    border-top: 1px solid var(--default-color);
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.divider-tab-group hr {
+    flex-grow: 1;
+}
+
+.group-tab {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+.tab-key {
+    width: 16px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.tab-link {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.tab-link a {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    text-decoration: none;
+}
+
+.tab-link a, .tab-link a:active, .tab-link a:visited {
+    color: dodgerblue;
+}
+
+.tab-icon {
+    width: 16px;
+}
+
+.tab-icon img {
+    width: 16px;
+    height: 16px;
+}

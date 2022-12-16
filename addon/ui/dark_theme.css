@@ -1,0 +1,23 @@
+:root {
+    --default-color: #FBFBEA;
+    --background-color: #2B2A33;
+    --empty-border-color: var(--background-color);
+    --selection-border-color: var(--default-color);
+
+    color: var(--default-color);
+    background-color: var(--background-color);
+}
+
+.invert-filter {
+    filter: invert(99%) ;
+}
+
+input[type="text"] {
+    background-color: var(--background-color);
+    border-color: var(--default-color) !important;
+    color: var(--default-color);
+}
+
+#tab-group-color-table td {
+    border-color: var(--default-color) !important;
+}

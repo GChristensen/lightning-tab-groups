@@ -1,0 +1,4 @@
+theme: jekyll-theme-minimal
+title: Lightning Tab Groups
+logo: addon/ui/icons/logo.svg
+description: Tab group manager for keyboard ninjas

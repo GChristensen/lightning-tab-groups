@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <style>
+      body {
+        margin: 5px;
+        min-height: 400px;
+      }
+
+      .option-line {
+        margin-top: 8px;
+      }
+
+      .color-selector-line {
+        display: flex;
+        align-items: center;
+        /*justify-content: center;*/
+      }
+
+      .color-selector {
+        border-width: 1px;
+        border-radius: 4px;
+      }
+
+      .option-line:first-of-type {
+        margin-top: 0;
+      }
+    </style>
+
+    <link href="../lib/spectrum.css" rel="stylesheet"/>
+
+    <script src="../lib/jquery.js" type="text/javascript"></script>
+    <script src="../lib/spectrum.js" type="text/javascript"></script>
+
+    <script src="../global.js" type="text/javascript"></script>
+    <script src="options.js" type="module"></script>
+  </head>
+
+  <body>
+    <h3>Appearance</h3>
+    <div class="option-line">
+      Color theme:&nbsp;
+      <select id="option-color-theme">
+        <option value="auto">Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+
+    <!--div class="option-line color-selector-line">
+      Default mnemonic text color:&nbsp;
+      <input id="option-default-mnemonic-text-color" class="color-selector" type="text" size="7" value="">
+    </div>
+
+    <div class="option-line color-selector-line">
+      Default mnemonic background color:&nbsp;
+      <input id="option-default-mnemonic-color" class="color-selector" type="text" size="7" value="">
+    </div-->
+
+    <div class="option-line color-selector-line">
+      <input id="option-highlight-selection" type="checkbox">
+      <label for="option-highlight-selection">Highlight the selected tab group with color:&nbsp;</label>
+      <input id="option-selection-highlight-color" class="color-selector" type="text" size="7" value="">
+    </div>
+
+    <div class="option-line">
+      <input id="option-use-solid-mnemonic" type="checkbox">
+      <label for="option-use-solid-mnemonic">Use solid mnemonic</label>
+    </div>
+
+    <div class="option-line">
+      <input id="option-capitalize-default-tab-group" type="checkbox">
+      <label for="option-capitalize-default-tab-group">Capitalize the default tab group name</label>
+    </div>
+
+    <div class="option-line">
+      <input id="option-sort-tab-groups-alphabetically" type="checkbox">
+      <label for="option-sort-tab-groups-alphabetically">Sort tab groups alphabetically</label>
+    </div>
+
+    <p>
+      <a href="/ui/help/manual.html" target="_blank">User Manual</a>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+/.idea/
+*.iml
+/build
+/addon/.web-extension-id
+.local
