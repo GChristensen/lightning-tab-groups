@@ -12,7 +12,8 @@ test-nightly:
 
 build:
 	cd addon; python ../scripts/mkmanifest.py manifest.json.mv2 manifest.json `cat version.txt` --public
-	cd addon; web-ext build -a ../build -i .web-extension-id
+	cd addon; web-ext build -a ../build -i web-ext-artifacts .web-extension-id *.mv2* *.mv3* version.txt
+	make firefox-mv2
 
 sign:
 	make firefox-mv2
