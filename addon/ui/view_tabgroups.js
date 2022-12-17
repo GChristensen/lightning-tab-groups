@@ -2,10 +2,9 @@ import {tabGroupManagerProxy} from "../proxy.js";
 import {uiState, UIState} from "./state_base.js";
 import {displayEditTabGroupView} from "./view_edit_tabgroup.js";
 import {ALL_GROUPS_SPECIFIER, DEFAULT_TAB_GROUP} from "../tabgroup_manager.js";
-import {TabGroupRenderer} from "../tabgroup_renderer.js";
+import {TabGroupRenderer} from "./renderer_tabgroup.js";
 import {CONTAINERS} from "./containers.js";
 import {settings} from "../settings.js";
-import {displaySearchView} from "./view_search.js";
 import {displayTabsView} from "./view_tabs.js";
 
 const tabGroupManager = tabGroupManagerProxy;
@@ -19,53 +18,62 @@ function init() {
 }
 
 export async function displayTabGroupsView(initial) {
-    const tabGroupsTable = $("#tab-groups");
+    const tabGroupsContainer = $("#tab-groups");
     const tabGroups = await tabGroupManager.computeTabGroups(settings.sort_tab_groups_alphabetically());
     const renderer = new TabGroupRenderer(tabGroups, CONTAINERS);
 
-    tabGroupsTable.empty();
-    renderer.renderTabGroups(tabGroupsTable);
+    tabGroupsContainer.empty();
+    await renderer.renderTabGroups(tabGroupsContainer);
 
+    showTabGroupsView(initial);
+}
+
+export function showTabGroupsView(initial) {
     uiState.setState(new TabGroupsUIState());
 
     const body = $("body");
     const tabGroupsView = $("#tab-groups-view");
+
+    // voodoo to mitigate flickering extension popup scrollbars
+    body.css("width", `unset`);
+    body.css("height", `unset`);
     body.css("min-width", `${tabGroupsView.width() + 0}px`);
     body.css("min-height", `${tabGroupsView.height() + 0}px`);
+    body.css("padding-right", `initial`);
 
-    $(".view").hide();
-    $("#tab-groups-view").show();
+    if (!initial)
+        $(".view").hide();
+
+    tabGroupsView.show();
 }
 
 function onTabGroupClick(e) {
-    const uuid = $(".tab-group-name", $(e.target).closest("tr")).attr("data-uuid");
+    const uuid = $(e.target).closest(".tab-group-line").attr("data-uuid");
     return selectTabGroup(uuid);
 }
 
 function advanceSelection(direction) {
-    const activeTR = $("#tab-groups tr.active");
-    let nextTR = direction? activeTR.next(): activeTR.prev();
+    const activeTab = $("#tab-groups .active");
+    let nextTab = direction? activeTab.next(): activeTab.prev();
 
-    if (nextTR.length === 0) {
+    if (nextTab.length === 0) {
         if (direction)
-            nextTR = $("#tab-groups tr:first-of-type");
+            nextTab = $("#tab-groups > div:first-of-type");
         else
-            nextTR = $("#tab-groups tr:last-of-type");
+            nextTab = $("#tab-groups > div:last-of-type");
     }
 
-    activeTR.removeClass("active");
-    nextTR.addClass("active");
+    activeTab.removeClass("active");
+    nextTab.addClass("active");
 }
 
 function getSelectedTabGroup() {
-    return $("tr.active")
-        .find(".tab-group-name")
+    return $("#tab-groups .active")
         .attr("data-uuid");
 }
 
 function getInitiallyActiveTabGroup() {
-    return $("tr.initially-active")
-        .find(".tab-group-name")
+    return $("#tab-groups .initially-active")
         .attr("data-uuid");
 }
 
@@ -78,8 +86,7 @@ function selectGroupByEnter() {
 
 function selectGroupByKey(key) {
     const uuid = $(`[accesskey="${key}"]`)
-        .closest("tr")
-        .find(".tab-group-name")
+        .closest(".tab-group-line")
         .attr("data-uuid");
 
     if (uuid)
@@ -232,7 +239,7 @@ class TabGroupsUIState extends UIState {
             reloadSelection();
         else if (key === "=") {
             e.preventDefault();
-            displaySearchView();
+            displayTabsView();
         }
         else if (key === "F1")
             displayHelp();

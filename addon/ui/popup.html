@@ -10,6 +10,7 @@
 
     <script src="../global.js" type="text/javascript"></script>
     <script src="../lib/jquery.js" type="text/javascript"></script>
+    <script src="../lib/jquery.waitforimages.js" type="text/javascript"></script>
     <script src="popup.js" type="module"></script>
 </head>
 <body>
@@ -85,25 +86,14 @@
             <div id="tabs-buttons">
                 <img id="tabs-title-help" class="invert-filter" src="/ui/icons/help.svg" title="• ↑/↓ - select a tab.
 • Enter - switch to the selected tab.
-• 1-9, a-z - directly switch to the corresponding tab.">
-            </div>
-        </div>
-        <table id="group-tabs"></table>
-    </div>
-
-    <div id="search-tabs-view" class="view">
-        <div id="search-title" class="view-title">
-            <span id="search-title-text">Tab search</span>
-            <div id="search-buttons">
-                <img id="search-title-help" class="invert-filter" src="/ui/icons/help.svg" title="• ↑/↓ - select a tab.
-• Enter - switch to the selected tab.
-• Ctrl+1-9, Ctrl+a-z - directly switch to the corresponding tab.">
+• 1-9, a-z - directly switch to the corresponding tab.
+• Ctrl+1-9, Ctrl+a-z - directly switch to the corresponding tab when searching.">
             </div>
         </div>
         <div id="search-input-container">
             <input id="search-input" type="text">
         </div>
-        <table id="search-results"></table>
+        <div id="tabs"></div>
     </div>
 </body>
 </html>

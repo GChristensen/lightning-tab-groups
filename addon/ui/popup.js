@@ -18,7 +18,7 @@ async function init() {
 function applyCustomStyles() {
     if (settings.highlight_selection()) {
         const color = settings.selection_highlight_color() || "";
-        const rule = `.active td {background-color: ${color};}`;
+        const rule = `.active {background-color: ${color};}`;
         document.styleSheets[0].insertRule(rule, 0);
     }
 }

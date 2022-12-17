@@ -1,7 +1,7 @@
-import {DEFAULT_TAB_GROUP} from "./tabgroup_manager.js";
-import {settings} from "./settings.js";
-import {capitalize} from "./utils.js";
-import {TRANSPARENT_COLOR} from "./ui/themes.js";
+import {DEFAULT_TAB_GROUP} from "../tabgroup_manager.js";
+import {settings} from "../settings.js";
+import {capitalize} from "../utils.js";
+import {TRANSPARENT_COLOR} from "./themes.js";
 
 export class TabRenderer {
     #tabGroups;
@@ -16,6 +16,7 @@ export class TabRenderer {
 
     renderTabs(containerElement) {
         let tabCounter = 0;
+        let html = "";
 
         for (const tabGroup of this.#tabGroups) {
             const tabs = this.#getTabGroupTabs(tabGroup.uuid);
@@ -23,16 +24,19 @@ export class TabRenderer {
             if (tabs?.length) {
                 for (const tab of tabs) {
                     const tabRowHTML = this.#renderTabRow(tabCounter++, tab);
-                    containerElement.append(tabRowHTML);
+
+                    html += tabRowHTML;
                 }
 
                 if (this.searchResults) {
                     const tabGroupRowHTML = this.#renderTabGroupRow(tabGroup);
 
-                    containerElement.append(tabGroupRowHTML);
+                    html += tabGroupRowHTML;
                 }
             }
         }
+
+        containerElement.html(html);
     }
 
     #renderTabGroupRow(tabGroup) {
@@ -47,26 +51,23 @@ export class TabRenderer {
         if (tabGroup.uuid === DEFAULT_TAB_GROUP && settings.capitalize_default_tab_group())
             tabGroupName = capitalize(tabGroupName);
 
-        return `<tr class="divider-tab-group-line">
-                    <td class="divider-tab-group" colspan="3">
-                        <div>
-                            <hr class="tab-group-divider" style="${borderColor}">
-                            <span class="tab-group-name" style="${color}">&nbsp;${tabGroupName}</span>
-                        </div>
-                    </td>
-                </tr>`;
+        return `<div class="divider-tab-group">
+                    <hr class="tab-group-divider" style="${borderColor}">
+                    <span class="divider-tab-group-name" style="${color}">&nbsp;${tabGroupName}</span>
+                </div>`;
     }
 
     #renderTabRow(rowIndex, {tab, tabGroup}) {
         const displayNumber = rowIndex + 1;
         const key = displayNumber < 36 ? displayNumber.toString(36) : "-";
         const favIconURL = tab.favIconUrl || "/ui/icons/globe.svg";
+        const title = tab.title.replace("\"", "&#34;")
 
-        return `<tr class="tab-line">
-                  <td class="tab-key" accesskey="${key}">${key}.</td>
-                  <td class="tab-icon"><img class="tab-icon" src="${favIconURL}"></td>
-                  <td class="tab-link" data-uuid="${tabGroup}" data-tab-id="${tab.id}"><a href="${tab.url}" target="_blank">${tab.title}</a></td>                        
-                </tr>`;
+        return `<div class="tab-line" data-uuid="${tabGroup}" data-tab-id="${tab.id}">
+                  <div class="tab-key" accesskey="${key}">${key}.</div>
+                  <div class="tab-icon"><img class="tab-icon" src="${favIconURL}"></div>
+                  <div class="tab-link"><a href="${tab.url}" title="${title}" target="_blank">${tab.title}</a></div>                        
+                </div>`;
     }
 
     #getTabGroupTabs(uuid) {
