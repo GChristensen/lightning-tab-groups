@@ -25,6 +25,7 @@ export class TabGroupRenderer {
         containerElement.html(html);
 
         containerElement.waitForImages(() => {
+            //await sleep(100);
             const rowCountItems = containerElement.find(".tab-group-tab-count");
             const maxWidth = Math.max(...rowCountItems.map(function() {return $(this).width()}).toArray());
             rowCountItems.css("width", `${maxWidth}px`);
@@ -52,7 +53,13 @@ export class TabGroupRenderer {
                     <div class="tab-group-key" accesskey="${key}">${key}.</div>
                     ${icon}
                     <div class="tab-group-name" style="${color}">${tabGroupName}</div>
-                    <div class="tab-group-tab-count"><img class="small-tab-icon invert-filter" src="/ui/icons/tab-small.svg">${tabCount}</div>
+                    <div class="tab-group-tab-count">
+                        <div class="tab-count"><img class="small-tab-icon invert-filter" src="/ui/icons/tab-small.svg">${tabCount}</div>
+                        <div class="tab-group-buttons">
+                            <img class="button-edit-tab-group action-button" src="/ui/icons/edit.svg" title="Edit"><!--
+                            --><img class="button-delete-tab-group action-button" src="/ui/icons/delete.svg" title="Delete">
+                        </div>
+                    </div>
                 </div>`;
     }
 

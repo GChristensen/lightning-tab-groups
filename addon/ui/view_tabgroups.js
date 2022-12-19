@@ -11,8 +11,22 @@ const tabGroupManager = tabGroupManagerProxy;
 
 $(init);
 
-function init() {
-    $("#tab-groups").on("click", ".tab-group-line", onTabGroupClick);
+async function init() {
+    await settings.load();
+
+    const tabGroupsView = $("#tab-groups");
+
+    tabGroupsView
+        .on("click", ".button-edit-tab-group", onEditTabGroupClick)
+        .on("click", ".button-delete-tab-group", onDeleteTabGroupClick)
+        .on("click", ".tab-group-line", onTabGroupClick);
+
+    if (settings.show_overlay_tab_group_buttons()) {
+        tabGroupsView
+            .on("mouseover", ".tab-group-line", onTabGroupMouseOver)
+            .on("mouseleave", ".tab-group-line", onTabGroupMouseLeave);
+    }
+
     $("#add-tab-group-button").on("click", createTabGroup);
     $("#tab-groups-title-help").on("click", displayShortcuts);
 }
@@ -34,17 +48,47 @@ export function showTabGroupsView(initial) {
     const body = $("body");
     const tabGroupsView = $("#tab-groups-view");
 
-    // voodoo to mitigate flickering extension popup scrollbars
+    // voodoo to mitigate the flickering extension popup scrollbars
     body.css("width", `unset`);
     body.css("height", `unset`);
     body.css("min-width", `${tabGroupsView.width() + 0}px`);
     body.css("min-height", `${tabGroupsView.height() + 0}px`);
-    body.css("padding-right", `initial`);
+    body.css("padding-right", `initiald`);
 
     if (!initial)
         $(".view").hide();
 
     tabGroupsView.show();
+}
+
+function onTabGroupMouseOver(e) {
+    $(".tab-group-buttons").hide();
+    $(".tab-count").show();
+    $(e.target).closest(".tab-group-line").find(".tab-count").hide();
+    $(e.target).closest(".tab-group-line").find(".tab-group-buttons").show();
+}
+
+function onTabGroupMouseLeave(e) {
+    $(".tab-group-buttons").hide();
+    $(".tab-count").show();
+}
+
+function onEditTabGroupClick(e) {
+    e.stopPropagation();
+
+    const tabGroupLine = $(e.target).closest(".tab-group-line");
+    const uuid = tabGroupLine.attr("data-uuid");
+
+    return displayEditTabGroupView(uuid);
+}
+
+function onDeleteTabGroupClick(e) {
+    e.stopPropagation();
+
+    const tabGroupLine = $(e.target).closest(".tab-group-line");
+    const uuid = tabGroupLine.attr("data-uuid");
+
+    return deleteTabGroup(uuid);
 }
 
 function onTabGroupClick(e) {
@@ -121,6 +165,15 @@ function editSelection() {
     const uuid = getSelectedTabGroup();
 
     return displayEditTabGroupView(uuid);
+}
+
+async function deleteTabGroup(uuid) {
+    await tabGroupManager.deleteTabGroup(uuid);
+
+    if (uuid === getInitiallyActiveTabGroup())
+        window.close();
+    else
+        displayTabGroupsView();
 }
 
 async function moveTabsToSelection(bySwitching) {
@@ -252,12 +305,7 @@ class TabGroupDeleteUIState extends UIState {
 
         if (key === "y") {
             const uuid = getSelectedTabGroup();
-            await tabGroupManager.deleteTabGroup(uuid);
-            $("#confirm-delete").hide();
-            if (uuid === getInitiallyActiveTabGroup())
-                window.close();
-            else
-                displayTabGroupsView();
+            await deleteTabGroup(uuid);
         }
         else if (key === "n") {
             $("#confirm-delete").hide();

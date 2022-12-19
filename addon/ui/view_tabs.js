@@ -40,7 +40,7 @@ export async function displayTabsView(uuid) {
 }
 
 async function setUpTabsView(body, tabsView, searchMode) {
-    // voodoo to mitigate flickering extension popup scrollbars
+    // voodoo to mitigate the flickering extension popup scrollbars
     body.css("min-width", `unset`);
     body.css("min-height", `unset`);
 

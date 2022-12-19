@@ -6,7 +6,8 @@ class ScrapyardSettings {
     constructor() {
         this._default = {
             color_theme: "auto",
-            capitalize_default_tab_group: true
+            capitalize_default_tab_group: true,
+            show_overlay_tab_group_buttons: true
         };
 
         this._bin = {};
