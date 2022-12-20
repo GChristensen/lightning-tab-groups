@@ -76,7 +76,7 @@ function loadOptions() {
     loadCheck("use_solid_mnemonic");
     loadCheck("capitalize_default_tab_group");
     loadCheck("sort_tab_groups_alphabetically");
-    loadCheck("show_overlay_tab_group_buttons");
+    loadCheck("show_mouse_controls");
 }
 
 function configureOptions() {
@@ -88,7 +88,7 @@ function configureOptions() {
     setSaveCheckHandler("use_solid_mnemonic");
     setSaveCheckHandler("capitalize_default_tab_group");
     setSaveCheckHandler("sort_tab_groups_alphabetically");
-    setSaveCheckHandler("show_overlay_tab_group_buttons");
+    setSaveCheckHandler("show_mouse_controls");
 
     $('#option-selection-highlight-color').spectrum({
         type: "component",

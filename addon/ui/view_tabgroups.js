@@ -21,7 +21,9 @@ async function init() {
         .on("click", ".button-delete-tab-group", onDeleteTabGroupClick)
         .on("click", ".tab-group-line", onTabGroupClick);
 
-    if (settings.show_overlay_tab_group_buttons()) {
+    $("#search-tabs-button").on("click", onSearchTabGroupClick);
+
+    if (settings.show_mouse_controls()) {
         tabGroupsView
             .on("mouseover", ".tab-group-line", onTabGroupMouseOver)
             .on("mouseleave", ".tab-group-line", onTabGroupMouseLeave);
@@ -53,7 +55,7 @@ export function showTabGroupsView(initial) {
     body.css("height", `unset`);
     body.css("min-width", `${tabGroupsView.width() + 0}px`);
     body.css("min-height", `${tabGroupsView.height() + 0}px`);
-    body.css("padding-right", `initiald`);
+    body.css("padding-right", `initial`);
 
     if (!initial)
         $(".view").hide();
@@ -71,6 +73,10 @@ function onTabGroupMouseOver(e) {
 function onTabGroupMouseLeave(e) {
     $(".tab-group-buttons").hide();
     $(".tab-count").show();
+}
+
+function onSearchTabGroupClick(e) {
+    displayTabsView();
 }
 
 function onEditTabGroupClick(e) {
@@ -145,10 +151,8 @@ async function selectTabGroup(uuid) {
 function deleteSelection() {
     const uuid = getSelectedTabGroup();
 
-    if (uuid.toLowerCase() !== DEFAULT_TAB_GROUP) {
-        $("#confirm-delete").show();
-        uiState.setState(new TabGroupDeleteUIState());
-    }
+    if (uuid.toLowerCase() !== DEFAULT_TAB_GROUP)
+        return deleteTabGroup(uuid);
 }
 
 function showSelectionTabs() {
@@ -173,7 +177,13 @@ async function deleteTabGroup(uuid) {
     if (uuid === getInitiallyActiveTabGroup())
         window.close();
     else
-        displayTabGroupsView();
+        return displayTabGroupsView();
+}
+
+async function undoDeleteTabGroup() {
+    await tabGroupManager.undoDeleteTabGroup();
+
+    return displayTabGroupsView();
 }
 
 async function moveTabsToSelection(bySwitching) {
@@ -268,6 +278,8 @@ class TabGroupsUIState extends UIState {
             else
                 deleteSelection();
         }
+        else if (e.ctrlKey && key === "z")
+            undoDeleteTabGroup();
         else if (key === "Insert") {
             if (e.ctrlKey)
                 editSelection();
@@ -296,20 +308,5 @@ class TabGroupsUIState extends UIState {
         }
         else if (key === "F1")
             displayHelp();
-    }
-}
-
-class TabGroupDeleteUIState extends UIState {
-    async onKeyDown(e) {
-        const key = e.key;
-
-        if (key === "y") {
-            const uuid = getSelectedTabGroup();
-            await deleteTabGroup(uuid);
-        }
-        else if (key === "n") {
-            $("#confirm-delete").hide();
-            this.stateMachine.setState(new TabGroupsUIState());
-        }
     }
 }

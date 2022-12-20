@@ -10,6 +10,7 @@ test:
 test-nightly:
 	cd addon; start web-ext run -p "${FIREFOX_PROFILES}/debug.nightly" --firefox=nightly --keep-profile-changes
 
+.PHONY: build
 build:
 	cd addon; python ../scripts/mkmanifest.py manifest.json.mv2 manifest.json `cat version.txt` --public
 	cd addon; web-ext build -a ../build -i web-ext-artifacts .web-extension-id *.mv2* *.mv3* version.txt

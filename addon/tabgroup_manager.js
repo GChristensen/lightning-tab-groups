@@ -10,6 +10,7 @@ export class TabGroupManager {
     static DEFAULT_STATE = {[DEFAULT_TAB_GROUP]: {name: DEFAULT_TAB_GROUP, uuid: DEFAULT_TAB_GROUP}};
 
     #tabGroups = TabGroupManager.DEFAULT_STATE;
+    #undoStack = [];
     #seenWebRequests = new Set();
     #recentTabGroup;
     #tabsByWindows = {};
@@ -266,7 +267,9 @@ export class TabGroupManager {
             };
     }
 
-    #removeTabGroup(uuid) {
+    async #removeTabGroup(uuid) {
+        const tabGroup = await this.#exportTabGroup(uuid);
+        this.#undoStack.push(tabGroup);
         delete this.#tabGroups[uuid];
     }
 
@@ -311,8 +314,8 @@ export class TabGroupManager {
                     await this.#setPlaceholderTab(placeholderTab);
                 }
 
-                await browser.tabs.hide(tabsToHide.map(t => t.id));
                 await browser.tabs.show(tabsToShow.map(t => t.id));
+                await browser.tabs.hide(tabsToHide.map(t => t.id));
                 await this.#saveState();
 
                 if (this.onTabGroupChanged) {
@@ -644,12 +647,12 @@ export class TabGroupManager {
                 await this.switchToTabGroup(DEFAULT_TAB_GROUP);
 
                 for (const group of groups) {
-                    this.#removeTabGroup(group.uuid);
+                    await this.#removeTabGroup(group.uuid);
                     await this.closeTabGroup(group.uuid);
                 }
             }
             else {
-                this.#removeTabGroup(uuid);
+                await this.#removeTabGroup(uuid);
 
                 if (uuid === currentWindowTabGroup)
                     await this.switchToTabGroup(DEFAULT_TAB_GROUP);
@@ -657,6 +660,16 @@ export class TabGroupManager {
                 await this.closeTabGroup(uuid);
             }
 
+            await this.#saveState();
+        }
+    }
+
+    async undoDeleteTabGroup() {
+        const tabGroup = this.#undoStack.pop();
+
+        if (tabGroup) {
+            await this.#importTabGroup(tabGroup);
+            await this.#trackExistingTabs();
             await this.#saveState();
         }
     }

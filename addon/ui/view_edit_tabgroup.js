@@ -15,7 +15,8 @@ async function init() {
         setTabGroupColor(e.target.id.at(-1));
     });
 
-    $("#tab-group-container").on("input", onContainerInput)
+    $("#tab-group-container").on("input", onContainerInput);
+    $("#tab-group-save-link").on("click", onTabGroupSaveClick);
 }
 
 export async function displayEditTabGroupView(uuid) {
@@ -28,6 +29,7 @@ export async function displayEditTabGroupView(uuid) {
         uiState.setState(new EditTabGroupUIState());
     }
     else {
+        editedTabGroup = null;
         $("#edit-tab-group-title-text").text("Create tab group")
         uiState.setState(new CreateTabGroupUIState());
     }
@@ -133,6 +135,16 @@ function setTabGroupColor(key) {
         ? "var(--default-color)"
         : color);
 }
+
+function onTabGroupSaveClick(e) {
+    e.preventDefault();
+
+    if (editedTabGroup)
+        return saveTabGroup();
+    else
+        return createTabGroup();
+}
+
 
 function onContainerInput(e) {
     const element = e.originalEvent.target;

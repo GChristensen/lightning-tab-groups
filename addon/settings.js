@@ -7,7 +7,7 @@ class ScrapyardSettings {
         this._default = {
             color_theme: "auto",
             capitalize_default_tab_group: true,
-            show_overlay_tab_group_buttons: true
+            show_mouse_controls: true
         };
 
         this._bin = {};

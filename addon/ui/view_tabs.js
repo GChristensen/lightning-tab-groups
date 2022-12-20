@@ -17,6 +17,7 @@ async function init() {
     $(document).on("error", ".tab-icon", onImageError);
     $("#tabs").on("click", ".tab-link a", onTabLinkClick);
     $("#search-input").on("input", onSearchInput);
+    $("#filter-tabs-button").on("click", onFilterTabsClick);
 }
 
 export async function displayTabsView(uuid) {
@@ -47,6 +48,7 @@ async function setUpTabsView(body, tabsView, searchMode) {
     if (searchMode) {
         $("#tabs").empty();
         $("#search-input-container").show();
+        $("#tabs-title-help").attr("title", $("#tabs-title-help").attr("data-search-title"));
 
         $("#tabs-title-text").text("Search tabs");
         body.css("width", `${MAX_POPUP_WIDTH}px`);
@@ -54,6 +56,11 @@ async function setUpTabsView(body, tabsView, searchMode) {
     }
     else {
         $("#search-input-container").hide();
+
+        if (settings.show_mouse_controls())
+            $("#filter-tabs-button").show();
+
+        $("#tabs-title-help").attr("title", $("#tabs-title-help").attr("data-tabs-title"));
 
         $("#tabs-title-text").text(tabGroup.name);
         await listTabs(tabGroup);
@@ -116,6 +123,10 @@ async function searchTabs(text) {
     }
     else
         searchResultsDiv.empty();
+}
+
+function onFilterTabsClick(e) {
+    startTabFiltering();
 }
 
 async function filterTabs(text) {

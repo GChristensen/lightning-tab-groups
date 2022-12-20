@@ -12,11 +12,16 @@
 
 body {
     /*max-width: 150px;*/
+    /*max-height: 200px;*/
     overflow-x: hidden;
 }
 
 input[type="text"] {
     outline: none;
+}
+
+.mouse-control {
+    display: none;
 }
 
 .view {
@@ -27,28 +32,37 @@ input[type="text"] {
     display: block;
 }
 
+#tabs-view {
+    flex-direction: column;
+}
+
 .view-title {
     margin-bottom: 8px;
     font-weight: 600;
 }
 
-#tab-groups-title, #tab-group-buttons, #tabs-title, #tabs-buttons {
+#tab-groups-title, #tab-group-buttons, #tabs-title, #tabs-buttons, #edit-tab-group-title, #edit-tab-group-buttons {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#tab-groups-title-text, #tabs-title-text {
+#tab-groups-title-text, #tabs-title-text, #edit-tab-group-title-text {
     flex: 1 0 auto;
 }
 
+#tab-group-buttons {
+    margin-left: 10px;
+}
+
 .action-button {
+    margin-left: 2px;
     cursor: pointer;
     width: 16px;
     height: 16px;
 }
 
-#tab-groups-title-help, #tabs-title-help {
+#tab-groups-title-help, #tabs-title-help, #edit-tab-group-title-help {
     cursor: help;
 }
 
@@ -99,9 +113,13 @@ input[type="text"] {
 
 .tab-group-buttons {
     display: none;
-    transform: translate(0px, 2px);
+    transform: translate(-2px, 2px);
     width: 100%;
     text-align: right;
+}
+
+#filter-tabs-button {
+    display: none;
 }
 
 .small-tab-icon {
@@ -109,22 +127,13 @@ input[type="text"] {
     margin-right: 2px;
 }
 
-#confirm-delete {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--confirm-font-size);
-    color: red;
-}
-
 #confirm-create {
     font-size: var(--confirm-font-size);
-    font-weight: bold;
+    text-align: right;
 }
 
 .confirm-prompt {
     margin-top: 10px;
-    font-weight: bold;
 }
 
 .edit-field-title {
@@ -135,7 +144,7 @@ input[type="text"] {
     border: none;
     border-bottom: 1px solid black;
     margin-left: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 14px;
     width: 170px;
 }
 
@@ -217,16 +226,17 @@ input[type="text"] {
 
 #search-input {
     width: 100%;
-    min-width: 200px;
     margin-right: 5px;
     border: none;
     border-bottom: 1px solid black;
 }
 
+#tabs-view {
+    height: 100%
+}
+
 #tabs {
     margin-top: 10px;
-    /*width: 100%;*/
-   /*width: 500px;*/
 }
 
 .divider-tab-group {

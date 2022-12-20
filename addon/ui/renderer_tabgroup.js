@@ -56,8 +56,8 @@ export class TabGroupRenderer {
                     <div class="tab-group-tab-count">
                         <div class="tab-count"><img class="small-tab-icon invert-filter" src="/ui/icons/tab-small.svg">${tabCount}</div>
                         <div class="tab-group-buttons">
-                            <img class="button-edit-tab-group action-button" src="/ui/icons/edit.svg" title="Edit"><!--
-                            --><img class="button-delete-tab-group action-button" src="/ui/icons/delete.svg" title="Delete">
+                            <img class="button-edit-tab-group invert-filter action-button" src="/ui/icons/edit.svg" title="Edit"><!--
+                            --><img class="button-delete-tab-group invert-filter action-button" src="/ui/icons/delete.svg" title="Delete">
                         </div>
                     </div>
                 </div>`;

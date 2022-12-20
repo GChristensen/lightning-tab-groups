@@ -8,6 +8,11 @@
     background-color: var(--background-color);
 }
 
+html {
+    border: 1px solid var(--selection-border-color);
+    border-radius: 10px;
+}
+
 .invert-filter {
     filter: invert(99%) ;
 }
@@ -20,4 +25,10 @@ input[type="text"] {
 
 #tab-group-color-table td {
     border-color: var(--default-color) !important;
+}
+
+.tab-link a, .tab-link a:active, .tab-link a:visited,
+.control-link a, .control-link a:active, .control-link a:visited
+{
+    color: #7fbefd;
 }

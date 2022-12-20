@@ -16,10 +16,11 @@
 <body>
     <div id="tab-groups-view" class="view default-view">
         <div id="tab-groups-title" class="view-title">
-            <div id="tab-groups-title-text">Tab groups&nbsp;&nbsp;</div>
+            <div id="tab-groups-title-text">Tab groups&nbsp;</div>
             <div id="tab-group-buttons">
-                <img id="add-tab-group-button" class="invert-filter action-button" src="/ui/icons/add.svg" title="Create tab group">&nbsp;
-                <img id="tab-groups-title-help" class="invert-filter action-button" src="/ui/icons/help.svg" title="• ↑/↓ - select a tab group.
+                <img id="add-tab-group-button" class="invert-filter action-button mouse-control" src="/ui/icons/add.svg" title="Create tab group"><!--
+                --><img id="search-tabs-button" class="invert-filter action-button mouse-control" src="/ui/icons/search.svg" title="Search tabs"><!--
+                --><img id="tab-groups-title-help" class="invert-filter action-button" src="/ui/icons/help.svg" title="• ↑/↓ - select a tab group.
 • Ctrl+↑/↓ - move the selected tab group up or down.
 • ←/→ - hide/show tab group tabs.
 • Enter - switch to the selected tab group.
@@ -28,6 +29,7 @@
 • Ctrl+Insert - edit the selected tab group.
 • Delete - delete the selected tab group.
 • Ctrl+Delete - close all tabs in the selected tab group.
+• Ctrl+z - restore the recently deleted tab group.
 • Home - move the currently active tab to the selected tab group.
 • End - move all or highlighted tabs to the selected tab group.
 • Shift+End - move all tabs of the selected tab group to a new window.
@@ -41,14 +43,15 @@
             </div>
         </div>
         <div id="tab-groups"></div>
-        <div id="confirm-delete" class="confirm-prompt">
-            Delete: y/n
-        </div>
     </div>
 
     <div id="create-tab-group-view" class="view">
         <div id="edit-tab-group-title" class="view-title">
             <span id="edit-tab-group-title-text">Edit tab group</span>
+            <div id="edit-tab-group-buttons">
+                <img id="edit-tab-group-title-help" class="invert-filter action-button" src="/ui/icons/help.svg" title="• Ctrl+<digit> - assign tab group color.
+• Enter - save tab group.">
+            </div>
         </div>
         <div class="edit-field-title">Name</div>
         <input id="tab-group-name" type="text"/>
@@ -75,8 +78,8 @@
             <input id="tab-group-color-key" type="hidden" value="0">
         </div>
 
-        <div id="confirm-create" class="confirm-prompt">
-            Save: Enter
+        <div id="confirm-create" class="confirm-prompt control-link mouse-control">
+            <a id="tab-group-save-link" href="#">Save</a>
         </div>
     </div>
 
@@ -84,10 +87,15 @@
         <div id="tabs-title" class="view-title">
             <span id="tabs-title-text"></span>
             <div id="tabs-buttons">
-                <img id="tabs-title-help" class="invert-filter action-button" src="/ui/icons/help.svg" title="• ↑/↓ - select a tab.
+                <img id="filter-tabs-button" class="invert-filter action-button mouse-control" src="/ui/icons/filter.svg" title="Filter tabs"><!--
+                --><img id="tabs-title-help" class="invert-filter action-button" src="/ui/icons/help.svg" data-search-title="• ↑/↓ - select a tab.
+• Enter - switch to the selected tab.
+• Ctrl+1-9, Ctrl+a-z - directly switch to the corresponding tab."
+                    data-tabs-title="• ↑/↓ - select a tab.
 • Enter - switch to the selected tab.
 • 1-9, a-z - directly switch to the corresponding tab.
-• Ctrl+1-9, Ctrl+a-z - directly switch to the corresponding tab when searching.">
+• Ctrl+1-9, Ctrl+a-z - directly switch to the corresponding tab when filtering.
+• = - filter tabs.">
             </div>
         </div>
         <div id="search-input-container">

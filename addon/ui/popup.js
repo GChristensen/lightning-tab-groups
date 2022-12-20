@@ -8,6 +8,10 @@ $(init)
 async function init() {
     await settings.load();
 
+    if (settings.show_mouse_controls()) {
+        $(".mouse-control").show();
+    }
+
     document.addEventListener("keydown", e => uiState.onKeyDown(e));
 
     applyCustomStyles();
@@ -19,6 +23,11 @@ function applyCustomStyles() {
     if (settings.highlight_selection()) {
         const color = settings.selection_highlight_color() || "";
         const rule = `.active {background-color: ${color};}`;
+        document.styleSheets[0].insertRule(rule, 0);
+    }
+
+    if (!settings.show_mouse_controls()) {
+        const rule = `.tab-group-tab-count {min-width: unset !important;}`;
         document.styleSheets[0].insertRule(rule, 0);
     }
 }
