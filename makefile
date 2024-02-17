@@ -5,10 +5,10 @@ get-version:
 	@cat ./addon/version.txt
 
 test:
-	cd addon; start web-ext run -p "${FIREFOX_PROFILES}/debug.ishell" --keep-profile-changes
+	cd addon; cmd //c web-ext run -p "${FIREFOX_PROFILES}/debug" --keep-profile-changes
 
 test-nightly:
-	cd addon; start web-ext run -p "${FIREFOX_PROFILES}/debug.nightly" --firefox=nightly --keep-profile-changes
+	cd addon; cmd //c run -p "${FIREFOX_PROFILES}/debug.nightly" --firefox=nightly --keep-profile-changes
 
 .PHONY: build
 build:

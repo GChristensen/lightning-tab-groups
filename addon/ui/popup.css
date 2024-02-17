@@ -304,3 +304,8 @@ hr.tab-group-divider {
     width: 16px;
     height: 16px;
 }
+
+.move-tabs-icon {
+    display: none;
+    width: 14px;
+}

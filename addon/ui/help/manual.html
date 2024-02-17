@@ -51,18 +51,15 @@
         while the extension popup window is open. All functionality of the add-on
         is also available through the built-in <a href="https://gchristensen.github.io/ishell"
                                                   target="_blank">iShell</a>
-        command called <span class="mono">tab-group</span>. The command allows to operate on all
-        tab groups simultaneously or only on the tabs selected by the filter. Please see iShell help for
-        more details.
+        command called <span class="mono">tab-group</span>.
     </p>
 
-    <p>Firefox <a href="https://support.mozilla.org/en-US/kb/customize-firefox-controls-buttons-and-toolbars" target="_blank">Customize Toolbar...</a>
-    menu allows to place the add-on action button at the beginning of the tab line as it is show in the image below:</p>
+    <p>It is possible to use the Firefox <a href="https://support.mozilla.org/en-US/kb/customize-firefox-controls-buttons-and-toolbars" target="_blank">
+        Customize Toolbar...</a> menu to place the add-on action button at the beginning of the tab line as it is show in the image below:</p>
 
     <p class="figure">
         <img src="images/action_placement.png">
     </p>
-
 
     <p>Lightning Tab Groups works best when the "Open previous windows and tabs" option is enabled in
         the Firefox <a
@@ -75,14 +72,14 @@
         <img src="images/popup_window.png">
     </p>
 
-    <p>The extension popup window contains the list of available tab groups and provides access to
+    <p>The extension popup window contains the list of available tab groups and provides
         the keyboard shortcuts used to perform tab group operations. It could be opened with the
         <a href="https://support.mozilla.org/en-US/kb/manage-extension-shortcuts-firefox"
            target="_blank">configurable</a> <span class="mono">Alt+G</span> key combination.
     </p>
 
     <p>Each row in the list displays the tab group access key, an icon of the tab group container
-        (if assigned), the tab group name, and the total number of tabs/tab count in the current window.
+        (if assigned), the tab group name, and the total number of tabs/tabs in the current window.
     </p>
 
     <p>Tab groups are listed in the order of their creation, although there is a setting that allows
@@ -111,7 +108,7 @@
     </p>
 
     <p>To create a new tab group, open the extension popup window with <span class="mono">Alt+G</span>
-        and press the <span class="mono">Insert</span> key. This will open the "Create tab group" form.
+        and press the <span class="mono">Insert</span> key on the keyboard. This will open the "Create tab group" form.
         In this form, you may specify the tab group name, the full name of its Firefox identity container
         (if required), and assign the mnemonic color with the <span class="mono">Ctrl+&lt;digit&gt;</span> key
         combination. Press <span class="mono">Enter</span> to save the tab group.
@@ -125,37 +122,48 @@
         This will also close all tab group tabs. The operation could be undone with the
         <span class="mono">Ctrl+z</span> key combination.
         The <span class="mono">Ctrl+Delete</span> keyboard shortcut only closes all tabs
-        belonging to the selected tab group without deleting the tab group itself.
+        belonging to the selected group without deleting the tab group itself.
     </p>
 
     <h3>Switching Between Tab Groups</h3>
 
-    <p>There are three ways to switch between tab groups: with the mouse, by selecting the necessary
-        tab group with the arrow keys and pressing <span class="mono">Enter</span>, and
-        directly with the access keys. For example, to switch to the Recipes tab group from the image above,
-        press <span class="mono">Alt+G</span> to open the extension popup window and then press
-        <span class="mono">3</span>.
-    </p>
+    <p>There are three ways to switch between tab groups:</p>
+    <ol>
+        <li> By Using the mouse.</li>
+        <li> By selecting the necessary group with the arrow keys and then pressing <span class="mono">Enter</span>.</li>
+        <li> Directly, by pressing the corresponding access keys on the keyboard while the add-on window is open.
+            For example, to switch to the Recipes tab group from the image above,
+            press <span class="mono">Alt+G</span> to open the extension popup window and then press
+            <span class="mono">3</span>.</li>
+    </ol>
 
     <h3>Displaying Tab Group Tabs</h3>
 
-    <p>To display tabs belonging to a particular tab group, select it with the arrow keys and press
+    <p>To display tabs belonging to a particular group, select it with the arrow keys and press
         <span class="mono">→</span> (arrow right). It is possible to filter tabs by title or URL.
         Press <span class="mono">=</span> (equals sign) to enter the filtering mode.
         Pressing <span class="mono">←</span> (arrow left) will bring you back to the list of
         tab groups.
     </p>
 
-    <h3 id="moving-tabs-between-tab-groups">Moving Tabs Between Tab Groups</h3>
+    <h3 id="moving-tabs-between-tab-groups">Moving Tabs Between Groups</h3>
+    <p class="figure">
+        <img src="images/move_tabs_icon.png">
+    </p>
+
+    <p>Click on the arrow icon in the tab group list will move the currently active tab to the corresponding tab group.
+        Holding the <span class="mono">Shift</span> key when clicking will move the selected or all tabs in the current window.
+        Hold the <span class="mono">Ctrl</span> key to automatically switch to the destination group.
+    </p>
 
     <p>To move the currently active tab or tabs selected with <span class="mono">Ctrl+&lt;click&gt;</span>
-        to another tab group, press <span class="mono">Alt+G</span>
-        to open the extension popup window, select the destination tab group with the arrow keys, and
+        to another tab group using only keyboard, press <span class="mono">Alt+G</span>
+        to open the extension popup window, select the destination group with the arrow keys, and
     press <span class="mono">Home</span>.</p>
 
     <p>To move all tabs or tabs selected with <span class="mono">Ctrl+&lt;click&gt;</span> to another
         tab group, open the extension popup window,
-        select the destination tab group, and press <span class="mono">End</span>.</p>
+        select the destination group, and press <span class="mono">End</span>.</p>
 
     <p>Holding <span class="mono">Ctrl</span> while pressing <span class="mono">Home</span> or
         <span class="mono">End</span> will automatically switch you to the destination tab group.</p>
@@ -166,8 +174,8 @@
 
     <h3>Copying and Pasting Tab Groups</h3>
 
-    <p>It is possible to copy and paste tab groups between different browser instances with the
-    Lightning Tab Groups installed.</p>
+    <p>It is possible to copy and paste tab groups between different browser instances where the
+    Lightning Tab Groups is installed.</p>
 
     <p>To copy a tab group, open the extension popup window, select it with the arrow keys, and press
         <span class="mono">PageUp</span>. Pres <span class="mono">Shift+PageUp</span> to copy all

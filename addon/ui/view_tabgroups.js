@@ -17,6 +17,7 @@ async function init() {
     const tabGroupsView = $("#tab-groups");
 
     tabGroupsView
+        .on("click", ".move-tabs-icon", onMoveTabsClick)
         .on("click", ".button-edit-tab-group", onEditTabGroupClick)
         .on("click", ".button-delete-tab-group", onDeleteTabGroupClick)
         .on("click", ".tab-group-line", onTabGroupClick);
@@ -35,7 +36,8 @@ async function init() {
 
 export async function displayTabGroupsView(initial) {
     const tabGroupsContainer = $("#tab-groups");
-    const tabGroups = await tabGroupManager.computeTabGroups(settings.sort_tab_groups_alphabetically());
+    const sortAlphabetically = settings.sort_tab_groups_alphabetically();
+    const tabGroups = await tabGroupManager.computeTabGroups(sortAlphabetically);
     const renderer = new TabGroupRenderer(tabGroups, CONTAINERS);
 
     tabGroupsContainer.empty();
@@ -66,17 +68,36 @@ export function showTabGroupsView(initial) {
 function onTabGroupMouseOver(e) {
     $(".tab-group-buttons").hide();
     $(".tab-count").show();
-    $(e.target).closest(".tab-group-line").find(".tab-count").hide();
-    $(e.target).closest(".tab-group-line").find(".tab-group-buttons").show();
+
+    const tabGroupLine = $(e.target).closest(".tab-group-line");
+    tabGroupLine.find(".tab-count").hide();
+    tabGroupLine.find(".tab-group-buttons").show();
+    tabGroupLine.find(".tab-group-key-value").css("visibility", "hidden");
+    tabGroupLine.find(".move-tabs-icon").show();
 }
 
 function onTabGroupMouseLeave(e) {
     $(".tab-group-buttons").hide();
     $(".tab-count").show();
+    $(".tab-group-key-value").css("visibility", "visible");
+    $(".move-tabs-icon").hide();
 }
 
 function onSearchTabGroupClick(e) {
     displayTabsView();
+}
+
+async function onMoveTabsClick(e) {
+    e.stopPropagation();
+
+    const tabGroupLine = $(e.target).closest(".tab-group-line");
+
+    if (e.shiftKey) {
+        await moveTabsToSelection(e.ctrlKey, tabGroupLine.attr("data-uuid"));
+    }
+    else {
+        await moveCurrentTabToSelection(e.ctrlKey, tabGroupLine.attr("data-uuid"));
+    }
 }
 
 function onEditTabGroupClick(e) {
@@ -186,16 +207,16 @@ async function undoDeleteTabGroup() {
     return displayTabGroupsView();
 }
 
-async function moveTabsToSelection(bySwitching) {
-    const uuid = getSelectedTabGroup();
+async function moveTabsToSelection(bySwitching, destUUID) {
+    const uuid = destUUID || getSelectedTabGroup();
     const action2 = bySwitching? "switching": "";
 
     await tabGroupManager.moveVisibleTabsToGroup({uuid, action: "move", action2});
     window.close();
 }
 
-async function moveCurrentTabToSelection(bySwitching) {
-    const uuid = getSelectedTabGroup();
+async function moveCurrentTabToSelection(bySwitching, destUUID) {
+    const uuid = destUUID || getSelectedTabGroup();
     const action2 = bySwitching? "switching": "";
 
     await tabGroupManager.moveVisibleTabsToGroup({uuid, action: "move-tab", action2});
