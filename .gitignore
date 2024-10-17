@@ -3,3 +3,4 @@
 /build
 /addon/.web-extension-id
 .local
+/addon/.amo-upload-uuid

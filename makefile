@@ -18,7 +18,7 @@ build:
 
 sign:
 	make firefox-mv2
-	cd addon; web-ext sign -a ../build -i .web-extension-id _metadata version.txt `cat $(HOME)/.amo/creds`
+	cd addon; web-ext sign --channel unlisted -a ../build -i .web-extension-id _metadata version.txt `cat $(HOME)/.amo/creds`
 
 firefox-mv2:
 	cd addon; python ../scripts/mkmanifest.py manifest.json.mv2 manifest.json `cat version.txt`

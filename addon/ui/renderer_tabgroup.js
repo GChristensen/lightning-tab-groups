@@ -51,7 +51,7 @@ export class TabGroupRenderer {
 
         return `<div class="tab-group-line ${active}" data-uuid="${tabGroup.uuid}">
                     <div class="tab-group-key" accesskey="${key}"><!--
-                    --><img class="move-tabs-icon" src="/ui/icons/move-tabs.svg" title="Move tabs here"/><!--
+                    --><img class="move-tabs-icon invert-filter" src="/ui/icons/move-tabs.svg" title="Move tabs here"/><!--
                     --><span class="tab-group-key-value">${key}.</span></div>
                     ${icon}
                     <div class="tab-group-name" style="${color}">${tabGroupName}</div>
