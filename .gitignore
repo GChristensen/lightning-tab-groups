@@ -4,3 +4,4 @@
 /addon/.web-extension-id
 .local
 /addon/.amo-upload-uuid
+/landing/node_modules/
