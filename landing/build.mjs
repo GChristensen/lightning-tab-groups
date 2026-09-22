@@ -105,7 +105,14 @@ if (plain) {
     svgs.set(url, optimize(src, { path: url, ...svgOpts }).data);
   }
   const written = new Set();
+  const copied = new Map();   // output-relative path -> source url, for non-svg local assets (e.g. video)
   html = mapUrls(html, (url, attr) => {
+    if (!/\.svg$/i.test(url)) {
+      // generic local asset: not inlined or minified, just rebased and copied through, like --plain does
+      const outPath = path.posix.normalize("landing/" + url);
+      copied.set(outPath, url);
+      return outPath;
+    }
     const svg = svgs.get(url);
     if (svg === undefined) throw new Error(`unhandled local asset: ${url}`);
     if (attr !== "data" && bytes(svg) <= INLINE_LIMIT)
@@ -147,6 +154,14 @@ if (plain) {
     log.push(`  + ${SVG_DIR}/${path.basename(url)}  ${bytes(await read(url))} -> ${bytes(data)} bytes`);
   }
   log.push(`  ${svgs.size - written.size} small svgs inlined as data: URIs`);
+  for (const [outPath, url] of copied) {
+    const src = path.join(here, url);
+    const dest = path.join(outDir, outPath);
+    if (src === dest) { log.push(`  = ${outPath} already in place`); continue; }
+    await mkdir(path.dirname(dest), { recursive: true });
+    await cp(src, dest);
+    log.push(`  + ${outPath} copied as-is`);
+  }
 }
 
 console.log(`landing (${plain ? "plain" : "minified"}): ${path.join(here, "index.html")}`);
