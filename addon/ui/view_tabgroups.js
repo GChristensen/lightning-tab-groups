@@ -248,8 +248,14 @@ async function moveSelection(direction) {
         const uuid = getSelectedTabGroup();
 
         await tabGroupManager.moveTabGroup(uuid, direction);
-        return displayTabGroupsView();
+        await displayTabGroupsView();
+        selectTabGroupByUuid(uuid);
     }
+}
+
+function selectTabGroupByUuid(uuid) {
+    $("#tab-groups .active").removeClass("active");
+    $(`#tab-groups [data-uuid="${uuid}"]`).addClass("active");
 }
 
 async function copySelection(all) {

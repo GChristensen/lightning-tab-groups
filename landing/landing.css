@@ -171,6 +171,11 @@
   .cells span { width: clamp(24px, 4.6vw, 44px); height: clamp(34px, 6vw, 52px); display: grid; place-items: center; font: 700 clamp(.85rem, 2vw, 1.1rem)/1 var(--f-mono); color: #14162A; }
   .cells span + span { border-left: 1px solid rgba(20, 22, 42, .35); }
 
+  /* demo */
+  #demo .intro { color: var(--muted); margin: 0 0 28px; max-width: 52ch; }
+  .demo-stage { display: grid; place-items: center; }
+  .demo-video { display: block; width: 100%; max-width: 620px; height: auto; border-radius: 14px; filter: drop-shadow(0 24px 40px rgba(10, 12, 40, .28)); }
+
   /* shortcuts */
   .deep { background: var(--deep); color: var(--deep-ink); border-radius: 22px; padding: clamp(24px, 5vw, 56px); border: 1px solid var(--deep-line); }
   .deep h2 { margin-bottom: 10px; }
