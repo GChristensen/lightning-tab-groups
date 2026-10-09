@@ -8,11 +8,6 @@
     background-color: var(--background-color);
 }
 
-html {
-    border: 1px solid var(--selection-border-color);
-    border-radius: 10px;
-}
-
 .invert-filter {
     filter: invert(99%) ;
 }

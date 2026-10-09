@@ -81,10 +81,13 @@ function onImageError(e) {
     e.target.src = "/ui/icons/globe.svg";
 }
 
-async function listTabs(tabGroup) {
+async function listTabs(tabGroup, seq) {
     const groupTabsTable = $("#tabs");
     let tabs = await tabGroupManager.getTabGroupTabs(tabGroup.uuid, false);
     tabs = tabs.map(tab => ({tab, tabGroup: tabGroup.uuid}));
+
+    if (seq !== undefined && seq !== searchSeq)
+        return;
 
     groupTabsTable.empty();
 
@@ -96,28 +99,35 @@ async function listTabs(tabGroup) {
     }
 }
 
-let searchInputTimeout;
+// incremented on each keystroke, so responses to outdated queries are discarded
+let searchSeq = 0;
 function onSearchInput(e) {
-    clearTimeout(searchInputTimeout);
-    searchInputTimeout = setTimeout(async () => {
-        if (searchMode)
-            searchTabs(e.target.value);
-        else
-            filterTabs(e.target.value);
-    }, 1000);
+    const seq = ++searchSeq;
+    const text = e.target.value;
+
+    if (searchMode)
+        return searchTabs(text, seq);
+    else
+        return filterTabs(text, seq);
 }
 
-async function searchTabs(text) {
+async function searchTabs(text, seq) {
     const searchResultsDiv = $("#tabs");
 
     if (text && text.length > 1) {
         const tabs = await tabGroupManager.searchTabs(text);
+        let tabGroups;
+
+        if (tabs?.length)
+            tabGroups = await tabGroupManager.computeTabGroups(settings.sort_tab_groups_alphabetically());
+
+        if (seq !== searchSeq)
+            return;
+
+        searchResultsDiv.empty();
 
         if (tabs?.length) {
-            const tabGroups = await tabGroupManager.computeTabGroups(settings.sort_tab_groups_alphabetically());
             const renderer = new TabRenderer(tabGroups, tabs);
-
-            searchResultsDiv.empty();
             renderer.renderTabs(searchResultsDiv);
         }
     }
@@ -129,13 +139,16 @@ function onFilterTabsClick(e) {
     startTabFiltering();
 }
 
-async function filterTabs(text) {
+async function filterTabs(text, seq) {
     const filteringResultsDiv = $("#tabs");
 
     if (text && text.length > 1) {
         let tabs = await tabGroupManager.getTabGroupTabs(tabGroup.uuid, false);
         tabs = await tabGroupManager.filterTabs(tabs, text);
         tabs = tabs.map(tab => ({tab, tabGroup: tabGroup.uuid}));
+
+        if (seq !== searchSeq)
+            return;
 
         filteringResultsDiv.empty();
 
@@ -147,7 +160,7 @@ async function filterTabs(text) {
         }
     }
     else
-        return listTabs(tabGroup);
+        return listTabs(tabGroup, seq);
 }
 
 async function selectTabByKey(key) {

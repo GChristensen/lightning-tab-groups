@@ -763,12 +763,12 @@ export class TabGroupManager {
 
     async searchTabs(text) {
         const tabs = await browser.tabs.query({});
-        const pattern = new RegExp(text, "i");
+        const pattern = text.toLowerCase();
         const result = [];
 
         for (const tab of tabs) {
-            const titleMatch = tab.title?.match(pattern);
-            const urlMatch = tab.url?.match(pattern);
+            const titleMatch = tab.title?.toLowerCase()?.includes(pattern);
+            const urlMatch = tab.url?.toLowerCase()?.includes(pattern);
 
             if (titleMatch || urlMatch) {
                 const uuid = this.#getCachedTabGroupUUID(tab.id);
