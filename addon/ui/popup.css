@@ -37,8 +37,16 @@ input[type="text"] {
 }
 
 .view-title {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     font-weight: 600;
+}
+
+#tab-groups-title-text, #tabs-title-text, #edit-tab-group-title-text {
+    padding-left: 4px;
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    opacity: .65;
 }
 
 #tab-groups-title, #tab-group-buttons, #tabs-title, #tabs-buttons, #edit-tab-group-title, #edit-tab-group-buttons {
@@ -60,6 +68,25 @@ input[type="text"] {
     cursor: pointer;
     width: 16px;
     height: 16px;
+}
+
+.view-title .action-button {
+    box-sizing: content-box;
+    margin: 0;
+    padding: 4px;
+    border-radius: 50%;
+}
+
+.view-title .action-button:hover {
+    background-color: rgba(128, 128, 128, .2);
+}
+
+#mouse-controls-button.off {
+    opacity: .35;
+}
+
+#mouse-controls-button.off:hover {
+    opacity: .7;
 }
 
 #tab-groups-title-help, #tabs-title-help, #edit-tab-group-title-help {
@@ -88,6 +115,10 @@ input[type="text"] {
 .tab-group-line.active {
     border: 1px solid var(--selection-border-color);
     border-radius: 5px;
+}
+
+.tab-group-line:hover:not(.active), .tab-line:hover:not(.active) {
+    background-color: rgba(128, 128, 128, .15);
 }
 
 .tab-group-key, .tab-group-icon {

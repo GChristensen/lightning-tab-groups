@@ -12,11 +12,26 @@ async function init() {
         $(".mouse-control").show();
     }
 
+    configureMouseControlsButton();
+
     document.addEventListener("keydown", e => uiState.onKeyDown(e));
 
     applyCustomStyles();
 
     await displayTabGroupsView(true);
+}
+
+function configureMouseControlsButton() {
+    const enabled = !!settings.show_mouse_controls();
+
+    $("#mouse-controls-button")
+        .toggleClass("off", !enabled)
+        .attr("title", enabled? "Hide mouse controls": "Show mouse controls")
+        .on("click", async () => {
+            await settings.load();
+            await settings.show_mouse_controls(!enabled);
+            location.reload();
+        });
 }
 
 function applyCustomStyles() {

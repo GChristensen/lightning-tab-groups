@@ -1,0 +1,117 @@
+.doc {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.doc h2 {
+    font-size: 18px;
+}
+
+.doc h3 {
+    margin: 4px 0 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.doc p, .doc ul, .doc ol {
+    margin: 0;
+}
+
+.doc ul, .doc ol {
+    padding-left: 22px;
+}
+
+.doc li + li {
+    margin-top: 4px;
+}
+
+.doc code {
+    font-family: var(--mono);
+    font-size: 13px;
+    background: var(--primary-hover-bg);
+    border-radius: 4px;
+    padding: 1px 5px;
+}
+
+.doc kbd {
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 1px 6px;
+    border: 1px solid var(--outline-variant);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.doc .ui {
+    font-weight: 600;
+}
+
+.doc figure {
+    margin: 0;
+    text-align: center;
+}
+
+.doc figure img {
+    max-width: 100%;
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+}
+
+.note {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    font-size: 14px;
+}
+
+.shortcuts {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px 20px;
+    align-items: baseline;
+    margin: 0;
+}
+
+.shortcuts dt {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: baseline;
+}
+
+.shortcuts dd {
+    margin: 0;
+}
+
+.shortcuts-group + .shortcuts-group {
+    padding-top: 18px;
+    border-top: 1px solid var(--divider);
+}
+
+.shortcuts-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+@media (max-width: 560px) {
+    .shortcuts {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+
+    .shortcuts dd {
+        margin-bottom: 10px;
+    }
+}

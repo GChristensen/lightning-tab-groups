@@ -2,64 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lightning Tab Groups Keyboard Shortcuts</title>
 
-    <style>
-      * {
-        font-family: "Segoe UI", Arial, sans-serif;
-      }
+    <link rel="stylesheet" type="text/css" media="all" href="../options.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="help.css"/>
 
-      body {
-        display: flex;
-      }
-
-      .placeholder {
-        flex-grow: 1;
-      }
-
-      .heading {
-        text-align: center;
-      }
-
-      .shortcut {
-        text-align: center;
-        font-weight: bold;
-      }
-
-      .description {
-        padding-left: 10px;
-      }
-    </style>
+    <script src="help.js"></script>
 </head>
 <body>
-  <div class="placeholder"></div>
+<div id="settings-container" class="doc">
 
-  <div class="content">
-    <h3 class="heading">Lightning Tab Groups Keyboard Shortcuts</h3>
-    <table>
-      <tr><td class="shortcut">↑/↓</td><td class="description">Select a tab group.</td></tr>
-      <tr><td class="shortcut">Ctrl+↑/↓</td><td class="description">Move the selected tab group up or down.</td></tr>
-      <tr><td class="shortcut">←/→</td><td class="description">Hide/show tab group tabs.</td></tr>
-      <tr><td class="shortcut">Enter</td><td class="description">Switch to the selected tab group.</td></tr>
-      <tr><td class="shortcut">1-9, a-z</td><td class="description">Directly switch to the corresponding tab group.</td></tr>
-      <tr><td class="shortcut">Insert</td><td class="description">Create a tab group.</td></tr>
-      <tr><td class="shortcut">Ctrl+Insert</td><td class="description">Edit the selected tab group.</td></tr>
-      <tr><td class="shortcut">Delete</td><td class="description">Delete the selected tab group.</td></tr>
-      <tr><td class="shortcut">Ctrl+Delete</td><td class="description">Close all tabs in the selected tab group.</td></tr>
-      <tr><td class="shortcut">Ctrl+z</td><td class="description">Restore the recently deleted tab group.</td></tr>
-      <tr><td class="shortcut">Home</td><td class="description">Move the currently active tab to the selected tab group.</td></tr>
-      <tr><td class="shortcut">End</td><td class="description">Move all or highlighted tabs to the selected tab group.</td></tr>
-      <tr><td class="shortcut">Shift+End</td><td class="description">Move all tabs of the selected tab group to a new window.</td></tr>
-      <tr><td class="shortcut">Ctrl+End/Home</td><td class="description">Move by switching to the selected tab group.</td></tr>
-      <tr><td class="shortcut">PageUp</td><td class="description">Copy the selected tab group to the clipboard.</td></tr>
-      <tr><td class="shortcut">Shift+PageUp</td><td class="description">Copy all tab groups to the clipboard.</td></tr>
-      <tr><td class="shortcut">PageDown</td><td class="description">Paste tab groups from the clipboard.</td></tr>
-      <tr><td class="shortcut">/</td><td class="description">Reload all tabs in the selected tab group.</td></tr>
-      <tr><td class="shortcut">=</td><td class="description">Search tabs.</td></tr>
-      <tr><td class="shortcut">F1</td><td class="description">Display help.</td></tr>
-    </table>
-  </div>
+    <header class="top">
+        <div class="brand">
+            <img class="logo" src="/ui/icons/logo.svg" alt="">
+            <div>
+                <h1>Keyboard Shortcuts</h1>
+                <p class="tagline">They work while the popup window is open (<kbd>Alt</kbd>+<kbd>G</kbd>)</p>
+            </div>
+        </div>
+        <nav class="links" aria-label="Links">
+            <a class="tbtn" href="manual.html" target="_blank">User manual</a>
+        </nav>
+    </header>
 
-  <div class="placeholder"></div>
+    <section class="card">
+        <div class="shortcuts-group">
+            <h2>Navigation</h2>
+            <dl class="shortcuts">
+                <dt><kbd>↑</kbd><kbd>↓</kbd></dt><dd>Select a tab group.</dd>
+                <dt><kbd>Ctrl</kbd>+<kbd>↑</kbd><kbd>↓</kbd></dt><dd>Move the selected tab group up or down.</dd>
+                <dt><kbd>←</kbd><kbd>→</kbd></dt><dd>Hide or show the tabs of the selected tab group.</dd>
+                <dt><kbd>Enter</kbd></dt><dd>Switch to the selected tab group.</dd>
+                <dt><kbd>1</kbd>–<kbd>9</kbd>, <kbd>a</kbd>–<kbd>z</kbd></dt><dd>Switch directly to the corresponding tab group.</dd>
+                <dt><kbd>=</kbd></dt><dd>Search tabs.</dd>
+            </dl>
+        </div>
+
+        <div class="shortcuts-group">
+            <h2>Tab groups</h2>
+            <dl class="shortcuts">
+                <dt><kbd>Insert</kbd></dt><dd>Create a tab group.</dd>
+                <dt><kbd>Ctrl</kbd>+<kbd>Insert</kbd></dt><dd>Edit the selected tab group.</dd>
+                <dt><kbd>Delete</kbd></dt><dd>Delete the selected tab group.</dd>
+                <dt><kbd>Ctrl</kbd>+<kbd>Delete</kbd></dt><dd>Close all tabs in the selected tab group.</dd>
+                <dt><kbd>Ctrl</kbd>+<kbd>Z</kbd></dt><dd>Restore the most recently deleted tab group.</dd>
+                <dt><kbd>/</kbd></dt><dd>Reload all tabs in the selected tab group.</dd>
+            </dl>
+        </div>
+
+        <div class="shortcuts-group">
+            <h2>Moving tabs</h2>
+            <dl class="shortcuts">
+                <dt><kbd>Home</kbd></dt><dd>Move the active tab to the selected tab group.</dd>
+                <dt><kbd>End</kbd></dt><dd>Move all tabs, or only the highlighted ones, to the selected tab group.</dd>
+                <dt><kbd>Ctrl</kbd>+<kbd>Home</kbd> / <kbd>End</kbd></dt><dd>Same as Home or End, then switch to that tab group.</dd>
+                <dt><kbd>Shift</kbd>+<kbd>End</kbd></dt><dd>Move the tabs of the selected tab group to a new window.</dd>
+            </dl>
+        </div>
+
+        <div class="shortcuts-group">
+            <h2>Clipboard</h2>
+            <dl class="shortcuts">
+                <dt><kbd>PageUp</kbd></dt><dd>Copy the selected tab group to the clipboard.</dd>
+                <dt><kbd>Shift</kbd>+<kbd>PageUp</kbd></dt><dd>Copy all tab groups to the clipboard.</dd>
+                <dt><kbd>PageDown</kbd></dt><dd>Paste tab groups from the clipboard.</dd>
+            </dl>
+        </div>
+
+        <div class="shortcuts-group">
+            <h2>Editing form</h2>
+            <dl class="shortcuts">
+                <dt><kbd>Ctrl</kbd>+<kbd>0</kbd>–<kbd>9</kbd></dt><dd>Assign the tab group color. <kbd>Ctrl</kbd>+<kbd>9</kbd> makes it transparent.</dd>
+                <dt><kbd>Enter</kbd></dt><dd>Save the tab group.</dd>
+            </dl>
+        </div>
+
+        <p class="note">Press <kbd>F1</kbd> in the popup window to open the <a href="manual.html">user manual</a>.</p>
+    </section>
+
+    <footer class="foot">
+        <a href="../options.html">Back to settings</a>
+        <span class="foot-links">
+            <a href="https://gchristensen.github.io/lightning-tab-groups/" target="_blank">Homepage</a>
+            <a href="https://gchristensen.github.io/" target="_blank">More add-ons</a>
+        </span>
+    </footer>
+</div>
 </body>
 </html>

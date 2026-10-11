@@ -554,11 +554,17 @@ label.row-text {
 
 .popup-title .grow {
     flex: 1;
-    color: var(--text);
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
 }
 
 .popup.no-mouse .popup-mouse-control {
     display: none;
+}
+
+.popup.no-mouse .popup-mouse-toggle {
+    opacity: .4;
 }
 
 .popup-groups {
