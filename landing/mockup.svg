@@ -35,7 +35,9 @@
   <title
      id="mt">Lightning Tab Groups in a Firefox window</title>
   <desc
-     id="md">A Firefox window showing six tabs of the Recipes group, with the add-on popup open. The popup lists four tab groups: Default, GitHub, Recipes and Cats, each with its number of tabs. The page behind shows a stack of pancakes with butter and blueberries.</desc>
+     id="md">A Firefox window showing six tabs of the Recipes group, with the add-on popup open. The popup lists four tab groups: Default, GitHub, Recipes and Cats. The selected Recipes group shows its mouse controls: a move-tabs arrow, an edit button and a delete button; the other groups show their number of tabs. The page behind shows a stack of pancakes with butter and blueberries.</desc>
+  <style
+     id="callout-style"><![CDATA[@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap");#callouts,#callout-scrim{transition:opacity .25s ease;pointer-events:none}svg:not(:hover) #callouts,svg:not(:hover) #callout-scrim{opacity:0}@media (prefers-reduced-motion:reduce){#callouts,#callout-scrim{transition:none}}]]></style>
   <defs
      id="defs61">
     <symbol
@@ -1021,6 +1023,14 @@
         </g>
       </g>
     </g>
+    <!-- fades the page behind the popup while the callouts are shown -->
+    <rect
+       y="92"
+       width="1200"
+       height="628"
+       fill="#F9F9FB"
+       opacity=".82"
+       id="callout-scrim" />
     <!-- add-on popup -->
     <g
        transform="translate(20 100)"
@@ -1040,13 +1050,13 @@
          fill="#15141A"
          id="text114">Tab groups</text>
       <path
-         d="M226 30h12m-6-6v12"
+         d="M188 30h12m-6-6v12"
          stroke="#15141A"
          stroke-width="3.6"
          stroke-linecap="square"
          id="path114" />
       <circle
-         cx="270"
+         cx="227"
          cy="28"
          r="6.5"
          fill="none"
@@ -1054,11 +1064,17 @@
          stroke-width="2.6"
          id="circle114" />
       <path
-         d="M275 33l7 7"
+         d="M232 33l7 7"
          stroke="#15141A"
          stroke-width="2.8"
          stroke-linecap="round"
          id="path115" />
+      <!-- mouse controls toggle (on) -->
+      <path
+         d="M3.5 1V13.2L6.4 10.5 8.4 14.8 10.4 13.9 8.4 9.6H12.4Z"
+         transform="translate(261 19) scale(1.375)"
+         fill="#15141A"
+         id="mouse-toggle" />
       <circle
          cx="312"
          cy="30"
@@ -1104,11 +1120,7 @@
            x="22"
            y="138"
            id="text118" />
-        <!-- 3 -->
-        <text
-           x="22"
-           y="186"
-           id="text119">3.</text>
+        <!-- 3: hovered, its key gives way to the move-tabs arrow -->
         <text
            x="120"
            y="186"
@@ -1274,19 +1286,6 @@
            id="text130">5</text>
         <rect
            x="268"
-           y="176"
-           width="13"
-           height="5.5"
-           rx="2.7"
-           id="rect131" />
-        <text
-           x="322"
-           y="186"
-           font-size="21"
-           text-anchor="end"
-           id="text131">6</text>
-        <rect
-           x="268"
            y="224"
            width="13"
            height="5.5"
@@ -1299,6 +1298,190 @@
            text-anchor="end"
            id="text132">8</text>
       </g>
+      <!-- row 3 mouse controls: move tabs here, edit, delete -->
+      <g
+         fill="#15141A"
+         id="row-controls">
+        <polygon
+           points="192,112 0,112 0,272 192,272 192,384 384,192 192,0"
+           transform="translate(22 171) scale(.041667)"
+           id="move-tabs" />
+        <path
+           d="M6 34.5v7.5h7.5l22.13-22.13-7.5-7.5-22.13 22.13zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"
+           transform="translate(268 168) scale(.4583)"
+           id="edit" />
+        <path
+           d="M12 38c0 2.21 1.79 4 4 4h16c2.21 0 4-1.79 4-4v-24h-24v24zm26-30h-7l-2-2h-10l-2 2h-7v4h28v-4z"
+           transform="translate(296 168) scale(.4583)"
+           id="delete" />
+      </g>
+    </g>
+  </g>
+  <!-- callouts: shown while the pointer is over the picture -->
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Callouts"
+     id="callouts">
+    <g
+       fill="none"
+       stroke="#14162A"
+       stroke-width="1.3"
+       stroke-linejoin="round"
+       id="callout-lines">
+      <path
+         d="M206 118v-5h137v5M343 113H380"
+         id="callout-line1" />
+      <path
+         d="M346 182H366V158H380"
+         id="callout-line2" />
+      <path
+         d="M50 194V207H380"
+         id="callout-line3" />
+      <path
+         d="M50 268V249H380"
+         id="callout-line4" />
+      <path
+         d="M334 279H380"
+         id="callout-line5" />
+      <path
+         d="M299 291V310H380"
+         id="callout-line6" />
+      <path
+         d="M200 301V375H380"
+         id="callout-line7" />
+    </g>
+    <g
+       fill="#FFCB1F"
+       stroke="#14162A"
+       stroke-width="1.2"
+       id="callout-dots">
+      <circle
+         cx="346"
+         cy="182"
+         r="3.2"
+         id="callout-dot2" />
+      <circle
+         cx="50"
+         cy="194"
+         r="3.2"
+         id="callout-dot3" />
+      <circle
+         cx="50"
+         cy="268"
+         r="3.2"
+         id="callout-dot4" />
+      <circle
+         cx="334"
+         cy="279"
+         r="3.2"
+         id="callout-dot5" />
+      <circle
+         cx="299"
+         cy="291"
+         r="3.2"
+         id="callout-dot6" />
+      <circle
+         cx="200"
+         cy="301"
+         r="3.2"
+         id="callout-dot7" />
+    </g>
+    <g
+       font-family="'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif"
+       font-size="12"
+       font-weight="500"
+       id="callout-labels">
+      <rect
+         x="380"
+         y="102"
+         width="288"
+         height="22"
+         rx="11"
+         fill="#14162A"
+         id="callout-pill1" />
+      <text
+         x="392"
+         y="117"
+         fill="#FFFFFF"
+         id="callout-text1">New group · Search tabs · Mouse controls · Help</text>
+      <rect
+         x="380"
+         y="147"
+         width="179"
+         height="22"
+         rx="11"
+         fill="#14162A"
+         id="callout-pill2" />
+      <text
+         x="392"
+         y="162"
+         fill="#FFFFFF"
+         id="callout-text2">Number of tabs in the group</text>
+      <rect
+         x="380"
+         y="196"
+         width="280"
+         height="22"
+         rx="11"
+         fill="#14162A"
+         id="callout-pill3" />
+      <text
+         x="392"
+         y="211"
+         fill="#FFFFFF"
+         id="callout-text3">The group's key: press it to switch to the group</text>
+      <rect
+         x="380"
+         y="238"
+         width="250"
+         height="22"
+         rx="11"
+         fill="#14162A"
+         id="callout-pill4" />
+      <text
+         x="392"
+         y="253"
+         fill="#FFFFFF"
+         id="callout-text4">Move the current tab here (Shift: all tabs)</text>
+      <rect
+         x="380"
+         y="268"
+         width="239"
+         height="22"
+         rx="11"
+         fill="#14162A"
+         id="callout-pill5" />
+      <text
+         x="392"
+         y="283"
+         fill="#FFFFFF"
+         id="callout-text5">Delete the group (Ctrl+Z brings it back)</text>
+      <rect
+         x="380"
+         y="299"
+         width="214"
+         height="22"
+         rx="11"
+         fill="#14162A"
+         id="callout-pill6" />
+      <text
+         x="392"
+         y="314"
+         fill="#FFFFFF"
+         id="callout-text6">Edit the name, container and color</text>
+      <rect
+         x="380"
+         y="364"
+         width="220"
+         height="22"
+         rx="11"
+         fill="#14162A"
+         id="callout-pill7" />
+      <text
+         x="392"
+         y="379"
+         fill="#FFFFFF"
+         id="callout-text7">Selected group: Enter switches to it</text>
     </g>
   </g>
   <rect

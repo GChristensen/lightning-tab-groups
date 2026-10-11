@@ -132,7 +132,8 @@
     margin-top: 8px;
   }
   .scroller { overflow-x: auto; }
-  .mock { display: block; width: 100%; min-width: 760px; height: auto; filter: drop-shadow(0 24px 40px rgba(10, 12, 40, .28)); }
+  /* an <object>, not an <img>, so the callouts inside the svg can react to hover */
+  .mock { display: block; width: 100%; min-width: 760px; height: auto; aspect-ratio: 1200 / 720; filter: drop-shadow(0 24px 40px rgba(10, 12, 40, .28)); }
 
   /* ---------- keycaps ---------- */
   kbd {

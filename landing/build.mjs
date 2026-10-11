@@ -94,9 +94,10 @@ if (plain) {
   if (deferred.length) html = html.replace("</body>", deferred.join("") + "</body>");
 
   // 3. svgs: minify them all, inline the small ones that are used as images, write the rest
-  // Full default preset, except that the viewBox is kept (the mockup scales with it). svgo drops the
-  // mockup's <title>; the page describes it with the alt text on the <img> instead.
-  const svgOpts = { multipass: true, plugins: [{ name: "preset-default", params: { overrides: { removeViewBox: false } } }] };
+  // Full default preset, except that the viewBox is kept (the mockup scales with it) and the <style> is
+  // left alone (inlineStyles would drop the :hover rules that show the mockup's callouts). svgo drops the
+  // mockup's <title>; the page describes it with the aria-label on the <object> instead.
+  const svgOpts = { multipass: true, plugins: [{ name: "preset-default", params: { overrides: { removeViewBox: false, inlineStyles: false } } }] };
   const svgs = new Map();                   // url -> minified text
   for (const [, , url] of html.matchAll(/(\s(?:src|href|data)=")([^"]+\.svg)"/g)) {
     if (!isLocal(url) || svgs.has(url)) continue;
