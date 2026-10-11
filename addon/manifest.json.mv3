@@ -57,7 +57,8 @@
     "webRequest",
     "webRequestBlocking",
     "contextualIdentities",
-    "cookies"
+    "cookies",
+    "menus"
   ],
 
   "host_permissions": [

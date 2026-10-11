@@ -19,6 +19,25 @@ refreshWindows();
 
 browser.windows.onCreated.addListener(displayWindowTabGroupMnemonic);
 
+const ACTION_MENU_SETTINGS = "action-menu-settings";
+
+createActionMenu();
+
+browser.menus.onClicked.addListener(info => {
+    if (info.menuItemId === ACTION_MENU_SETTINGS)
+        browser.runtime.openOptionsPage();
+});
+
+async function createActionMenu() {
+    await browser.menus.removeAll();
+
+    browser.menus.create({
+        id: ACTION_MENU_SETTINGS,
+        title: "Settings",
+        contexts: [_MANIFEST_V3? "action": "browser_action"]
+    });
+}
+
 async function refreshWindows() {
     const windows = await browser.windows.getAll();
 

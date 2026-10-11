@@ -59,6 +59,7 @@
     "webRequest",
     "webRequestBlocking",
     "contextualIdentities",
-    "cookies"
+    "cookies",
+    "menus"
   ]
 }
