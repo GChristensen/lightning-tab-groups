@@ -196,3 +196,7 @@
     .nav-links { gap: 16px; }
   }
   @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .theme-toggle:hover { transform: none; } }
+
+.gc-credit a { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .gc-credit img { filter: invert(1); } }
+:root[data-theme="dark"] .gc-credit img { filter: invert(1); }
